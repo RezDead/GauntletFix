@@ -2,7 +2,7 @@
 
 
 #include "BTTask_FindTargetLocation.h"
-
+#include "BehaviorTree/BlackboardComponent.h"
 #include "NavigationSystem.h"
 #include "NPC_AIController.h"
 
