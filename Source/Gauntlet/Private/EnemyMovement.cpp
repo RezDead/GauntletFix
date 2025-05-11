@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "EnemyMovement.h"
 #include "EnemyStats.h"
 
@@ -46,4 +45,5 @@ void UEnemyMovement::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 	// ...
 }
+
 
