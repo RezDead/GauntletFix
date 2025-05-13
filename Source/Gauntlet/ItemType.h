@@ -8,13 +8,10 @@
  
 #include "CoreMinimal.h"
 #include "ItemType.generated.h"
- 
-/*
- * Custom enum to demonstrate how to expose enums to Blueprints.
- */
+
 UENUM(BlueprintType)
 enum class EItemType : uint8
 {
 	Key UMETA(DisplayName = "Key"),
-	Potion UMETA(DisplayName = "Potion"),
+	Potion UMETA(DisplayName = "Potion")
 };
