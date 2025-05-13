@@ -16,6 +16,8 @@ public:
 	// Sets default values for this component's properties
 	UEnemyMovement();
 
+	
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -23,6 +25,8 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stat Values")
 	float Speed;
+
+	
 
 public:	
 	// Called every frame

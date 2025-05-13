@@ -6,10 +6,10 @@
 #include "Components/ActorComponent.h"
 #include "EnemyStats.generated.h"
 
-
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class GAUNTLET_API UEnemyStats : public UActorComponent
-{
+{ 
+
 	GENERATED_BODY()
 
 public:	
@@ -29,12 +29,15 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Damage System")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Health System")
 	int EnemyCurrentHealth;
+	
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Damage System")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Health System")
 	int EnemyMaxHealth;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Damage System")
+	int DamagePower;
 	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Stats")
