@@ -29,13 +29,15 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Damage System")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Health System")
 	int EnemyCurrentHealth;
 	
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Damage System")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Health System")
 	int EnemyMaxHealth;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Damage System")
+	int DamagePower;
 	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Stats")
