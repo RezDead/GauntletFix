@@ -1,14 +1,14 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/DataTable.h"
 #include "Dialog.generated.h"
 
 USTRUCT(BlueprintType)
-struct FDialog
+struct GAUNTLET_API FDialog : public FTableRowBase
 {
 	GENERATED_BODY()
-
-	// A string (localized text) you can edit anywhere
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText  DisplayText;
 };
