@@ -16,32 +16,27 @@ UBTTask_FindClosestPlayerLocation::UBTTask_FindClosestPlayerLocation(FObjectInit
 
 EBTNodeResult::Type UBTTask_FindClosestPlayerLocation::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	//get player character
-	if (auto* const Player = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))
+
+	TArray<AActor*> FoundPlayers;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Player"), FoundPlayers);
+
+	if (FoundPlayers.Num() > 0) // Check if array is not empty
 	{
-		//get player location
-		auto const PlayerLocation = Player->GetActorLocation();
+		int32 RandomIndex = FMath::RandRange(0, FoundPlayers.Num() - 1); // Generate random index
+		AActor* RandomPlayer = FoundPlayers[RandomIndex]; // Get the random actor
 
-		if (SearchRandom) {
-			FNavLocation Loc;
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Found Player: %s"), *RandomPlayer->GetName()));
+		
 
-			//Get nav system and make a random location near player
-			if (auto* const NavSys = UNavigationSystemV1::GetCurrent(GetWorld()))
-			{
-				//try to get randomlocation near player
-				if (NavSys->GetRandomPointInNavigableRadius(PlayerLocation, SeachRadius, Loc))
-				{
-					OwnerComp.GetBlackboardComponent()->SetValueAsVector(GetSelectedBlackboardKey(), Loc.Location);
-					FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
-					
-				}
-			}
-		}
-		else {
-			OwnerComp.GetBlackboardComponent()->SetValueAsVector(GetSelectedBlackboardKey(), PlayerLocation);
-			FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
-			return EBTNodeResult::Succeeded;
-		}
+		OwnerComp.GetBlackboardComponent()->SetValueAsVector(GetSelectedBlackboardKey(), RandomPlayer->GetActorLocation());
+		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
+		return EBTNodeResult::Succeeded;
+		
+	}
+	else {
+		
+		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
+		return EBTNodeResult::Succeeded;
 	}
 
 	return EBTNodeResult::Failed;
