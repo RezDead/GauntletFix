@@ -34,6 +34,10 @@ UPlayerData::UPlayerData()
 	ShotSize = 1.0f;
 }
 
+/**
+ * 
+ * @param Score 
+ */
 void UPlayerData::IncreaseScore(const int Score)
 {
 	PlayerScore += Score;
