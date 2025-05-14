@@ -25,7 +25,7 @@ EBTNodeResult::Type UBTTask_FindClosestPlayerLocation::ExecuteTask(UBehaviorTree
 		int32 RandomIndex = FMath::RandRange(0, FoundPlayers.Num() - 1); // Generate random index
 		AActor* RandomPlayer = FoundPlayers[RandomIndex]; // Get the random actor
 
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Found Player: %s"), *RandomPlayer->GetName()));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Found Player: %s"), *RandomPlayer->GetName()));
 		
 
 		OwnerComp.GetBlackboardComponent()->SetValueAsVector(GetSelectedBlackboardKey(), RandomPlayer->GetActorLocation());

@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 /*
-Kriger, Nathan
 
+Author: Krigerm Nathan
+Last Updated: 5/14/2025
+Handles Spawning of Enemies
 */
 #pragma once
 

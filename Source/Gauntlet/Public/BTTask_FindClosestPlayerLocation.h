@@ -7,7 +7,7 @@
 #include "BTTask_FindClosestPlayerLocation.generated.h"
 
 /**
- * 
+ * aaaaaaaaaa
  */
 UCLASS()
 class GAUNTLET_API UBTTask_FindClosestPlayerLocation : public UBTTask_BlackboardBase

@@ -1,5 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+/*
 
+Author: Krigerm Nathan
+Last Updated: 5/14/2025
+Handles Finding nearest player
+*/
 
 #include "BTTask_FindTargetLocation.h"
 #include "BehaviorTree/BlackboardComponent.h"
