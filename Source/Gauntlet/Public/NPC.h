@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "BehaviorTree/BehaviorTree.h"
+#include "CSpawner.h"
 #include "NPC.generated.h"
 
 UCLASS()
@@ -16,6 +17,7 @@ public:
 	// Sets default values for this character's properties
 	ANPC();
 	UBehaviorTree* GetBehaviorTree() const;
+	ACSpawner* Spawner;
 
 protected:
 	// Called when the game starts or when spawned
@@ -30,5 +32,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawn")
+	//TSubclassOf<ACSpawner> Spawner;
 
 };
