@@ -7,7 +7,7 @@
 #pragma once
  
 #include "CoreMinimal.h"
-#include "ENarrationEvents.generated.h"
+#include "EPlayerTypes.generated.h"
 
 UENUM(BlueprintType)
 enum class EPlayerTypes : uint8

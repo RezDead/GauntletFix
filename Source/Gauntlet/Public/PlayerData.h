@@ -10,6 +10,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Gauntlet/EPlayerTypes.h"
+#include "Gauntlet/ItemType.h"
 #include "PlayerData.generated.h"
 
 //Declares an event
@@ -23,8 +24,8 @@ class GAUNTLET_API UPlayerData : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UPlayerData();
+	
 	//UProperties
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerType)
 	EPlayerTypes PlayerType;
 
@@ -33,6 +34,8 @@ public:
 	int InitialPlayerHealth;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStats)
 	int InitialPlayerScore;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStats)
+	TArray<EItemType> InitialInventory;
 	
 	//Player Stats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerData)
@@ -53,9 +56,9 @@ public:
 	float ShotSize;
 
 	//Working Player Stats
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerStats)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PlayerStats)
 	int PlayerHealth;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerStats)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PlayerStats)
 	int PlayerScore;
 
 	//Allows event to be called/processed in blueprint
@@ -74,7 +77,22 @@ public:
 
 	UFUNCTION()
 	void ReduceHealthEverySecond();
+	
+	//Inventory Properties
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerInventory)
+	int InventorySize;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerInventory)
+	TArray<EItemType> Inventory;
+
+	//Inventory Functions
+	UFUNCTION(BlueprintCallable)
+	bool AddToInventory(const EItemType Item);
+	UFUNCTION(BlueprintCallable)
+	bool CheckIfInInventory(const EItemType Item) const;
+	UFUNCTION(BlueprintCallable)
+	bool RemoveFromInventory(const EItemType Item);
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };
