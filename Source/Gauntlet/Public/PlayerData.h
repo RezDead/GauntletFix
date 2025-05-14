@@ -34,6 +34,8 @@ public:
 	int InitialPlayerHealth;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStats)
 	int InitialPlayerScore;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStats)
+	TArray<EItemType> InitialInventory;
 	
 	//Player Stats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerData)
@@ -92,4 +94,5 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };

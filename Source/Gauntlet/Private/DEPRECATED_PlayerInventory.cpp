@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "PlayerInventory.h"
+#include "DEPRECATED_PlayerInventory.h"
 
 #include "PlayerDataSubsystem.h"
 
-void UPlayerInventory::BeginPlay()
+void UDEPRECATED_PlayerInventory::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -13,12 +13,12 @@ void UPlayerInventory::BeginPlay()
 }
 
 // Sets default values for this component's properties
-UPlayerInventory::UPlayerInventory(): PlayerType()
+UDEPRECATED_PlayerInventory::UDEPRECATED_PlayerInventory(): PlayerType()
 {
 	InventorySize = 12;
 }
 
-bool UPlayerInventory::AddToInventory(const EItemType Item)
+bool UDEPRECATED_PlayerInventory::AddToInventory(const EItemType Item)
 {
 	if (Inventory.Num() < InventorySize)
 	{
@@ -29,7 +29,7 @@ bool UPlayerInventory::AddToInventory(const EItemType Item)
 	return false;
 }
 
-bool UPlayerInventory::CheckIfInInventory(const EItemType Item) const
+bool UDEPRECATED_PlayerInventory::CheckIfInInventory(const EItemType Item) const
 {
 	if (Inventory.Contains(Item))
 	{
@@ -38,7 +38,7 @@ bool UPlayerInventory::CheckIfInInventory(const EItemType Item) const
 	return false;
 }
 
-bool UPlayerInventory::RemoveFromInventory(const EItemType Item)
+bool UDEPRECATED_PlayerInventory::RemoveFromInventory(const EItemType Item)
 {
 	if (Inventory.Contains(Item))
 	{

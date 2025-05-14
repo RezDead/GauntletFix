@@ -16,16 +16,25 @@ void UPlayerData::BeginPlay()
 	Super::BeginPlay();
 
 	//Only actually works once but needs to be called like this
-	GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()->NewPlayerAdded(InitialPlayerHealth,InitialPlayerScore,Inventory,PlayerType);
+	GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()
+	->NewPlayerAdded(InitialPlayerHealth,InitialPlayerScore,Inventory,PlayerType);
 
 	//Snags player stats from persistant storage
 	PlayerHealth = GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()->GetPlayerHealth(PlayerType);
 	PlayerScore = GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()->GetPlayerScore(PlayerType);
+	Inventory = GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()->GetPlayerInventory(PlayerType);
 
 	//Start decreasing health every second
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UPlayerData::ReduceHealthEverySecond, 1.0f,true);
 	
+}
+
+void UPlayerData::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()
+	->SetAll(PlayerType, PlayerHealth, PlayerScore, Inventory);
 }
 
 

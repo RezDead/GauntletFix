@@ -6,17 +6,17 @@
 #include "Components/ActorComponent.h"
 #include "Gauntlet/EPlayerTypes.h"
 #include "Gauntlet/ItemType.h"
-#include "PlayerInventory.generated.h"
+#include "DEPRECATED_PlayerInventory.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class GAUNTLET_API UPlayerInventory : public UActorComponent
+UCLASS(Deprecated, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+class GAUNTLET_API UDEPRECATED_PlayerInventory : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UPlayerInventory();
+	UDEPRECATED_PlayerInventory();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerType)
 	EPlayerTypes PlayerType;
