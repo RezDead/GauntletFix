@@ -32,7 +32,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Data Tables")
 	UDataTable* LevelCleared;
 
-	UPROPERTY(VisibleAnywhere, Category = "Output Text")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Output Text")
 	FText OutputText;
 	
 	//Functions
