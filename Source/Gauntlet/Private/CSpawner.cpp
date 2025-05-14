@@ -1,5 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+/*
+Kriger, Nathan
 
+*/
 
 #include "CSpawner.h"
 #include "TimerManager.h"
