@@ -3,8 +3,17 @@
 
 #include "PlayerInventory.h"
 
+#include "PlayerDataSubsystem.h"
+
+void UPlayerInventory::BeginPlay()
+{
+	Super::BeginPlay();
+
+	
+}
+
 // Sets default values for this component's properties
-UPlayerInventory::UPlayerInventory()
+UPlayerInventory::UPlayerInventory(): PlayerType()
 {
 	InventorySize = 12;
 }

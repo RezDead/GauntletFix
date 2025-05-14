@@ -16,7 +16,7 @@ void UPlayerData::BeginPlay()
 	Super::BeginPlay();
 
 	//Only actually works once but needs to be called like this
-	GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()->NewPlayerAdded(InitialPlayerHealth,InitialPlayerScore,PlayerType);
+	GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()->NewPlayerAdded(InitialPlayerHealth,InitialPlayerScore,Inventory,PlayerType);
 
 	//Snags player stats from persistant storage
 	PlayerHealth = GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()->GetPlayerHealth(PlayerType);
@@ -42,6 +42,7 @@ UPlayerData::UPlayerData(): PlayerType(), PlayerHealth(0), PlayerScore(0)
 	MagicPower = 1;
 	ShotSpeed = 1.0f;
 	ShotSize = 1.0f;
+	InventorySize = 12;
 }
 
 /**
@@ -86,4 +87,34 @@ void UPlayerData::ReduceHealthEverySecond()
 {
 	if (DecreaseHealth)
 		TakeDamage(HealthDecreaseRate);
+}
+
+bool UPlayerData::AddToInventory(const EItemType Item)
+{
+	if (Inventory.Num() < InventorySize)
+	{
+		Inventory.Add(Item);
+		return true;
+	}
+	
+	return false;
+}
+
+bool UPlayerData::CheckIfInInventory(const EItemType Item) const
+{
+	if (Inventory.Contains(Item))
+	{
+		return true;
+	}
+	return false;
+}
+
+bool UPlayerData::RemoveFromInventory(const EItemType Item)
+{
+	if (Inventory.Contains(Item))
+	{
+		Inventory.Remove(Item);
+		return true;
+	}
+	return false;
 }

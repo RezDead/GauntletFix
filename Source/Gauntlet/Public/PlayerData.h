@@ -10,6 +10,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Gauntlet/EPlayerTypes.h"
+#include "Gauntlet/ItemType.h"
 #include "PlayerData.generated.h"
 
 //Declares an event
@@ -23,8 +24,8 @@ class GAUNTLET_API UPlayerData : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UPlayerData();
+	
 	//UProperties
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerType)
 	EPlayerTypes PlayerType;
 
@@ -74,6 +75,20 @@ public:
 
 	UFUNCTION()
 	void ReduceHealthEverySecond();
+	
+	//Inventory Properties
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerInventory)
+	int InventorySize;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerInventory)
+	TArray<EItemType> Inventory;
+
+	//Inventory Functions
+	UFUNCTION(BlueprintCallable)
+	bool AddToInventory(const EItemType Item);
+	UFUNCTION(BlueprintCallable)
+	bool CheckIfInInventory(const EItemType Item) const;
+	UFUNCTION(BlueprintCallable)
+	bool RemoveFromInventory(const EItemType Item);
 
 protected:
 	virtual void BeginPlay() override;

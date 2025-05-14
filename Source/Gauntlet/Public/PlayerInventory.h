@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Gauntlet/EPlayerTypes.h"
 #include "Gauntlet/ItemType.h"
 #include "PlayerInventory.generated.h"
 
@@ -16,6 +17,9 @@ class GAUNTLET_API UPlayerInventory : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UPlayerInventory();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerType)
+	EPlayerTypes PlayerType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerData)
 	int InventorySize;
@@ -30,5 +34,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool RemoveFromInventory(const EItemType Item);
-	
+
+protected:
+	virtual void BeginPlay() override;
 };
