@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "Engine/DataTable.h"
+#include "PlayerStatsStruct.generated.h"
 
 USTRUCT(BlueprintType)
 struct GAUNTLET_API FPlayerStatsStruct
