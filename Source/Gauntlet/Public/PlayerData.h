@@ -9,6 +9,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Gauntlet/EPlayerTypes.h"
 #include "PlayerData.generated.h"
 
 //Declares an event
@@ -24,15 +25,20 @@ public:
 	UPlayerData();
 	//UProperties
 
-	//Data
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayerData)
-	int PlayerScore;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerData)
-	int HealthDecreaseRate;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerType)
+	EPlayerTypes PlayerType;
+
+	//Initial Player Stats
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStats)
+	int InitialPlayerHealth;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStats)
+	int InitialPlayerScore;
 	
 	//Player Stats
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStats)
-	int PlayerHealth;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerData)
+	bool DecreaseHealth;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerData)
+	int HealthDecreaseRate;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStats)
 	int PlayerSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStats)
@@ -45,6 +51,12 @@ public:
 	float ShotSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerStats)
 	float ShotSize;
+
+	//Working Player Stats
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerStats)
+	int PlayerHealth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerStats)
+	int PlayerScore;
 
 	//Allows event to be called/processed in blueprint
 	UPROPERTY(BlueprintAssignable)

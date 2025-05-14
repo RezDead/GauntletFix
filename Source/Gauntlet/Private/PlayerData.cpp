@@ -6,12 +6,21 @@
  */
 
 #include "PlayerData.h"
+
+#include "PlayerDataSubsystem.h"
 #include "TimerManager.h"
 #include "Engine/Engine.h"
 
 void UPlayerData::BeginPlay()
 {
 	Super::BeginPlay();
+
+	//Only actually works once but needs to be called like this
+	GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()->NewPlayerAdded(InitialPlayerHealth,InitialPlayerScore,PlayerType);
+
+	//Snags player stats from persistant storage
+	PlayerHealth = GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()->GetPlayerHealth(PlayerType);
+	PlayerScore = GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()->GetPlayerScore(PlayerType);
 
 	//Start decreasing health every second
 	FTimerHandle TimerHandle;
@@ -20,12 +29,13 @@ void UPlayerData::BeginPlay()
 }
 
 
-// Sets default values for this component's properties
-UPlayerData::UPlayerData()
+// Sets default values for this component's properties + Initializes player stats
+UPlayerData::UPlayerData(): PlayerType(), PlayerHealth(0), PlayerScore(0)
 {
-	PlayerScore = 0;
+	InitialPlayerScore = 0;
 	HealthDecreaseRate = 1;
-	PlayerHealth = 700;
+	DecreaseHealth = false;
+	InitialPlayerHealth = 700;
 	PlayerSpeed = 400;
 	PlayerArmor = 100;
 	DamagePower = 1;
@@ -35,14 +45,18 @@ UPlayerData::UPlayerData()
 }
 
 /**
- * 
- * @param Score 
+ * Increases the score by a given amount.
+ * @param Score Score added.
  */
 void UPlayerData::IncreaseScore(const int Score)
 {
 	PlayerScore += Score;
 }
 
+/**
+ * Causes the player to take damage and checks if player is dead.
+ * @param Damage Amount of damage taken
+ */
 void UPlayerData::TakeDamage(const int Damage)
 {
 	PlayerHealth -= Damage;
@@ -56,12 +70,20 @@ void UPlayerData::TakeDamage(const int Damage)
 		GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Green, FString::Printf(TEXT("PlayerHealth: %i"), PlayerHealth));
 }
 
+/**
+ * Adds health to the player.
+ * @param Health Health to be added.
+ */
 void UPlayerData::AddHealth(const int Health)
 {
 	PlayerHealth += Health;
 }
 
+/**
+ * Function used decrease player health every second
+ */
 void UPlayerData::ReduceHealthEverySecond()
 {
-	TakeDamage(HealthDecreaseRate);
+	if (DecreaseHealth)
+		TakeDamage(HealthDecreaseRate);
 }
