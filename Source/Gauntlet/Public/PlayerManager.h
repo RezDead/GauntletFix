@@ -1,4 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*
+* Author: Kroeger-Miller, Julian
+ * Last Updated: 5/14/2025
+ * Handles the current player states (Dead or alive) (singleton)
+ */
 
 #pragma once
 
@@ -8,9 +12,6 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "PlayerManager.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class GAUNTLET_API UPlayerManager : public UGameInstanceSubsystem
 {

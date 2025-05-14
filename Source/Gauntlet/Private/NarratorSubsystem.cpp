@@ -1,10 +1,18 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*
+* Author: Kroeger-Miller, Julian
+ * Last Updated: 5/14/2025
+ * Implementation of getting Data Tables for Narrator to say on given events (Singleton)
+ */
 
 #include "NarratorSubsystem.h"
 #include "Engine/DataTable.h"
 #include "Dialog.h"
 #include "GauntletGameInstance.h"
 
+/**
+ * Initializes all the DT from the game instance
+ * @param Collection No idea what this does tbh
+ */
 void UNarratorSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
@@ -29,6 +37,10 @@ void UNarratorSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
+/**
+ * Updates the narrators text box, to be used with a UI widget
+ * @param EventType The event that is being displayed.
+ */
 void UNarratorSubsystem::UpdateText(const ENarrationEvents EventType)
 {
 	UDataTable* SelectedData = nullptr;

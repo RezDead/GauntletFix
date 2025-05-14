@@ -1,4 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*
+* Author: Kroeger-Miller, Julian
+ * Last Updated: 5/14/2025
+ * Handles saving and loading the players data in between level transitions and periods of death. (Singleton)
+ */
 
 #pragma once
 
@@ -9,9 +13,6 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "PlayerDataSubsystem.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class GAUNTLET_API UPlayerDataSubsystem : public UGameInstanceSubsystem
 {

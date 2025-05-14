@@ -1,7 +1,7 @@
 ﻿/*
  * Author: Kroeger-Miller, Julian
  * Last Updated: 5/3/2025
- * Blueprint accessible enum for player inventory
+ * Blueprint accessible enum for item types
  */
 
 #pragma once

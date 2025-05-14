@@ -1,5 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+/*
+ * Author: Kroeger-Miller, Julian
+ * Last Updated: 5/14/2025
+ * Handles saving and loading the players data in between level transitions and periods of death. (Singleton)
+ */
 
 #include "PlayerDataSubsystem.h"
 
@@ -13,6 +16,13 @@ void UPlayerDataSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
+/**
+ * Sets up player data on first load of class
+ * @param InitialHealth Starting HP
+ * @param InitialScore Starting Score
+ * @param InitialInventory Starting Inventory
+ * @param PlayerType Class loaded
+ */
 void UPlayerDataSubsystem::NewPlayerAdded(const int InitialHealth, const int InitialScore, const TArray<EItemType> InitialInventory, const EPlayerTypes PlayerType)
 {
 	if (PlayerStats.Contains(PlayerType))
@@ -25,32 +35,58 @@ void UPlayerDataSubsystem::NewPlayerAdded(const int InitialHealth, const int Ini
 	PlayerStats.Add(PlayerType, NewPlayerStats);
 }
 
+/**
+ * Macro for setting all player data
+ * @param PlayerType Player data is set for
+ * @param Health HP Set
+ * @param Score Score Set
+ * @param Inventory Inventory Set
+ */
 void UPlayerDataSubsystem::SetAll(const EPlayerTypes PlayerType, const int Health, const int Score,
-	const TArray<EItemType> Inventory)
+                                  const TArray<EItemType> Inventory)
 {
 	SetPlayerHealth(PlayerType, Health);
 	SetPlayerScore(PlayerType, Score);
 	SetPlayerInventory(PlayerType, Inventory);
 }
 
+/**
+ * Sets the player health
+ * @param PlayerType Player class to set health for
+ * @param Health Health set
+ */
 void UPlayerDataSubsystem::SetPlayerHealth(const EPlayerTypes PlayerType, const int Health)
 {
 	if (PlayerStats.Contains(PlayerType))
 		PlayerStats[PlayerType].PlayerHealth = Health;
 }
-
+/**
+ * Sets the player score
+ * @param PlayerType Player class to set score for
+ * @param Score Score set
+ */
 void UPlayerDataSubsystem::SetPlayerScore(const EPlayerTypes PlayerType, const int Score)
 {
 	if (PlayerStats.Contains(PlayerType))
 		PlayerStats[PlayerType].PlayerScore = Score;
 }
 
+/**
+ * Sets the player inventory
+ * @param PlayerType Player class to set inventory for
+ * @param Inventory Inventory set
+ */
 void UPlayerDataSubsystem::SetPlayerInventory(const EPlayerTypes PlayerType, const TArray<EItemType> Inventory)
 {
 	if (PlayerStats.Contains(PlayerType))
 		PlayerStats[PlayerType].Inventory = Inventory;
 }
 
+/**
+ * Retrieves the stored player health
+ * @param PlayerType Player selected
+ * @return Stored HP for given player
+ */
 int UPlayerDataSubsystem::GetPlayerHealth(const EPlayerTypes PlayerType)
 {
 	if (PlayerStats.Contains(PlayerType))
@@ -59,6 +95,11 @@ int UPlayerDataSubsystem::GetPlayerHealth(const EPlayerTypes PlayerType)
 	return 0;
 }
 
+/**
+ * Retrieves the stored player score
+ * @param PlayerType Player selected
+ * @return Stored score for given player
+ */
 int UPlayerDataSubsystem::GetPlayerScore(const EPlayerTypes PlayerType)
 {
 	if (PlayerStats.Contains(PlayerType))
@@ -67,6 +108,11 @@ int UPlayerDataSubsystem::GetPlayerScore(const EPlayerTypes PlayerType)
 	return 0;
 }
 
+/**
+ * Retrieves the stored player inventory
+ * @param PlayerType Player selected
+ * @return Stored inventory for given player
+ */
 TArray<EItemType> UPlayerDataSubsystem::GetPlayerInventory(const EPlayerTypes PlayerType)
 {
 	if (PlayerStats.Contains(PlayerType))

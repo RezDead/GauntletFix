@@ -1,6 +1,6 @@
 /*
  * Author: Kroeger-Miller, Julian
- * Last Updated: 5/3/2025
+ * Last Updated: 5/14/2025
  * Handles player taking damage, broadcasting death event, taking damage every second, and holds player stats/data.
  * Shows how to call events, call functions after delay, and print to screen.
  */
@@ -33,6 +33,8 @@ void UPlayerData::BeginPlay()
 void UPlayerData::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
+
+	//Stores player data to subsystem before death
 	GetWorld()->GetGameInstance()->GetSubsystem<UPlayerDataSubsystem>()
 	->SetAll(PlayerType, PlayerHealth, PlayerScore, Inventory);
 }
@@ -98,6 +100,11 @@ void UPlayerData::ReduceHealthEverySecond()
 		TakeDamage(HealthDecreaseRate);
 }
 
+/**
+ * Adds an item to the players inventory
+ * @param Item Item to be added
+ * @return True if addec successfully
+ */
 bool UPlayerData::AddToInventory(const EItemType Item)
 {
 	if (Inventory.Num() < InventorySize)
@@ -109,6 +116,11 @@ bool UPlayerData::AddToInventory(const EItemType Item)
 	return false;
 }
 
+/**
+ * Checks if an item is in the players inventory
+ * @param Item Item to be checked for
+ * @return True if found, false if not
+ */
 bool UPlayerData::CheckIfInInventory(const EItemType Item) const
 {
 	if (Inventory.Contains(Item))
@@ -118,6 +130,11 @@ bool UPlayerData::CheckIfInInventory(const EItemType Item) const
 	return false;
 }
 
+/**
+ * Removes an item from the players inventory
+ * @param Item Item to be removed
+ * @return True if successfully removed, false if not
+ */
 bool UPlayerData::RemoveFromInventory(const EItemType Item)
 {
 	if (Inventory.Contains(Item))

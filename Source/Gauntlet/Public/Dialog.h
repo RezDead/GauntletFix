@@ -1,4 +1,10 @@
-﻿#pragma once
+﻿/*
+* Author: Kroeger-Miller, Julian
+ * Last Updated: 5/14/2025
+ * Struct for use in Narrator Data Tables
+ */
+
+#pragma once
 
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
