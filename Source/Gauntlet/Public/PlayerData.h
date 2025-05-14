@@ -56,9 +56,9 @@ public:
 	float ShotSize;
 
 	//Working Player Stats
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerStats)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PlayerStats)
 	int PlayerHealth;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = PlayerStats)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PlayerStats)
 	int PlayerScore;
 
 	//Allows event to be called/processed in blueprint
