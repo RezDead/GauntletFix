@@ -1,4 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+/*
+
+Author: Kriger Nathan
+Last Updated: 5/14/2025
+Handles Updating Tree AI
+*/
 
 #include "NPC_AIController.h"
 #include "NPC.h"

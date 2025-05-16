@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settin
-
 /*
-Kriger, Nathan
 
-
+Author: Kriger Nathan
+Last Updated: 5/16/2025
+Handles Enemy Stats
 */
 
 #include "EnemyStats.h"
