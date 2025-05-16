@@ -10,7 +10,7 @@ Both Controler and Keyboard work
 
 WASD & Joysticks - Movement
 Spacebar & Right Trigger - Attack
-E & Right Bumper - Use Potion
+E & Left Button (X button on Xbox) - Use Potion
 1 & D-Pad Up - Join as warrior
 2 & D-Pad Down - Join as wizard
 3 & D-Pad Right - join as valkyrie
