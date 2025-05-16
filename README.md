@@ -30,3 +30,14 @@ All of my stuff is commented but in general I completed the:
 
 # Work completed by Nathan Kriger:
 
+All of my stuff is commented but in general I completed the:
+
+* AI Navigation System
+* Enemies (All classes Included)
+* Enemy Spawner
+* Levles (1 and 2)
+* Potion attack
+* Enemy Stats System
+* Enemy Movement
+* UI
+* Points system
